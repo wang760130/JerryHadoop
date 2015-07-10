@@ -10,6 +10,8 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
+import com.jerry.hadoop.mapreducer.common.Global;
+
 /**
  * 数据去重
  * 统计大数据集上的数据种类个数、从网站日志中计算访问地等这些看似庞杂的任务都会涉及数据去重。
@@ -32,8 +34,12 @@ import org.apache.hadoop.util.GenericOptionsParser;
  */
 public class Dedup {
 	public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
+		String input = Global.getInputFile("dedup");
+		String output = Global.getOutputFile("dedup");
+		
 		Configuration conf = new Configuration();
-		args = new String[] {"/hadoop/mapreducer/dedup/inputfile", "/hadoop/mapreducer/dedup/outputfile" };
+		args = new String[] {input, output};
+		
 		String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 		
 		if (otherArgs.length != 2) {
