@@ -12,14 +12,16 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
+import com.jerry.hadoop.mapreducer.common.Global;
+
 /**
  * @author JerryWang
  */
 public class WordCount {
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		
-		String input = "hdfs://10.58.29.85:9000/mapreducer/wordcount/inputfile";
-		String output = "hdfs://10.58.29.85:9000/mapreducer/wordcount/outputfile";
+		String input = Global.getInputFile("wordcount");
+		String output = Global.getOutputFile("wordcount");
 		
 		Configuration conf = new Configuration();
 		args = new String[] {input, output};
