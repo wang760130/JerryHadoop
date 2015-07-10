@@ -19,6 +19,8 @@ import org.apache.hadoop.mapred.Reporter;
 import org.apache.hadoop.mapred.TextInputFormat;
 import org.apache.hadoop.mapred.TextOutputFormat;
 
+import com.jerry.hadoop.mapreducer.common.Global;
+
 public class WordCountBase {
 
 	public class WordCountMapper extends MapReduceBase implements
@@ -58,8 +60,8 @@ public class WordCountBase {
 	}
 
 	public static void main(String[] args) throws Exception {
-		String input = "hdfs://10.58.29.85:9000/mapreducer/wordcount/inputfile";
-		String output = "hdfs://10.58.29.85:9000/mapreducer/wordcount/outputfile";
+		String input = Global.getInputFile("wordcount");
+		String output = Global.getOutputFile("wordcount");
 
 		JobConf conf = new JobConf(WordCountBase.class);
 		conf.setJobName("WordCount");
