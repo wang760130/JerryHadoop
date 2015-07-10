@@ -12,10 +12,8 @@ public class ReducerClass extends Reducer<IntWritable, IntWritable, IntWritable,
 	protected void reduce(IntWritable key, Iterable<IntWritable> values,Context context)
 			throws IOException, InterruptedException {
 		
-		for(IntWritable value : values) {
-			context.write(linenum, key);
-			linenum = new IntWritable(linenum.get() + 1);
-		}
+		context.write(linenum, key);
+		linenum = new IntWritable(linenum.get() + 1);
 	}
 	
 }

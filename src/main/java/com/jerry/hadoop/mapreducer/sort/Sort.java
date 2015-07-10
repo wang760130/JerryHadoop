@@ -10,16 +10,21 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
+import com.jerry.hadoop.mapreducer.common.Global;
+
 /**
  * 排序
  * @author JerryWang
- *
  */
 public class Sort {
 	public static void main(String[] args) throws IOException,
 			InterruptedException, ClassNotFoundException {
+		
+		String input = Global.getInputFile("sort");
+		String output = Global.getOutputFile("sort");
+		
 		Configuration conf = new Configuration();
-		args = new String[] {"/hadoop/mapreducer/sort/inputfile", "/hadoop/mapreducer/sort/outputfile" };
+		args = new String[] {input, output};
 		String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 		if (otherArgs.length != 2) {
 			System.err.println("Usage: Data Sort <in> <out>");
