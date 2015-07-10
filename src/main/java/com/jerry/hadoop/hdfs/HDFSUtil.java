@@ -23,7 +23,7 @@ import org.apache.hadoop.io.IOUtils;
  * @author Jerry Wang
  */
 public class HDFSUtil {
-	private static final String HDFS_PATH = "hdfs://192.168.23.132:9000";
+	private static final String HDFS_PATH = "hdfs://10.58.29.85:9000";
 	private static final String DIR_PATH = "/jerry";
 	
 	private static FileSystem fileSystem = null;
@@ -101,4 +101,11 @@ public class HDFSUtil {
 		return dataNodeStates;
 	}
 	
+	public static void main(String[] args) {
+		try {
+			mkdirs("a");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }

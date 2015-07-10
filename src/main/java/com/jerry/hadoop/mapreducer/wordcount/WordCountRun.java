@@ -26,6 +26,9 @@ public class WordCountRun extends Configured implements Tool{
 	@Override
 	public int run(String[] args) throws Exception {
 		
+		String input = "hdfs://10.58.29.85:9000/mapreducer/wordcount/inputfile";
+		String output = "hdfs://10.58.29.85:9000/mapreducer/wordcount/outputfile";
+		
 		Configuration conf = new Configuration();  
         Job job = new Job(conf);  
         job.setJarByClass(WordCount.class);  
@@ -40,11 +43,8 @@ public class WordCountRun extends Configured implements Tool{
         job.setInputFormatClass(TextInputFormat.class);  
         job.setOutputFormatClass(TextOutputFormat.class);  
   
-//      FileInputFormat.addInputPath(job, new Path(args[0]));
-//		FileOutputFormat.setOutputPath(job, new Path(args[1]));
-		
-		FileInputFormat.addInputPath(job, new Path("hdfs://192.168.23.132:9000/hadoop/mapreducer/wordcount/inputfile"));
-		FileOutputFormat.setOutputPath(job, new Path("hdfs://192.168.23.132:9000/hadoop/mapreducer/wordcount/outputfile"));
+		FileInputFormat.addInputPath(job, new Path(input));
+		FileOutputFormat.setOutputPath(job, new Path(output));
 
 		return(job.waitForCompletion(true) ? 1 : 0);
 	}
