@@ -18,6 +18,8 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
 
+import com.jerry.hadoop.mapreducer.common.Global;
+
 public class WordCountRun extends Configured implements Tool{
 	enum Counter {
 		LINESKIP       // 出错的行
@@ -26,8 +28,8 @@ public class WordCountRun extends Configured implements Tool{
 	@Override
 	public int run(String[] args) throws Exception {
 		
-		String input = "hdfs://10.58.29.85:9000/mapreducer/wordcount/inputfile";
-		String output = "hdfs://10.58.29.85:9000/mapreducer/wordcount/outputfile";
+		String input = Global.getInputFile("wordcount");
+		String output = Global.getOutputFile("wordcount");
 		
 		Configuration conf = new Configuration();  
         Job job = new Job(conf);  
