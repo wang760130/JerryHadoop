@@ -33,21 +33,18 @@ import com.jerry.hadoop.mapreducer.common.Global;
  * 
  */
 public class Dedup {
-	public static void main(String[] args) throws IOException, InterruptedException, ClassNotFoundException {
-		String input = Global.getInputFile("dedup");
-		String output = Global.getOutputFile("dedup");
+	private static String name = "dedup";
+	public static void main(String[] args) 
+			throws IOException, InterruptedException, ClassNotFoundException {
+		String input = Global.getInputFile(name);
+		String output = Global.getOutputFile(name);
 		
 		Configuration conf = new Configuration();
 		args = new String[] {input, output};
 		
 		String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 		
-		if (otherArgs.length != 2) {
-			System.err.println("Usage: Data Deduplication <in> <out>");
-			System.exit(2);
-		}
-		
-		Job job = new Job(conf, "Data Deduplication");
+		Job job = new Job(conf, name);
 	    job.setJarByClass(Dedup.class);
 
 	    //设置Map、Combine和Reduce处理类

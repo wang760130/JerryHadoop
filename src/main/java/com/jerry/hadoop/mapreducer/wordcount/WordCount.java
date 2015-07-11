@@ -28,11 +28,6 @@ public class WordCount {
 		args = new String[] {input, output};
 		String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 		
-		if(otherArgs.length != 2) {
-			System.out.println("Usage : wordcount <in> <out>");
-			System.exit(2);
-		}
-		
 		Job job = new Job(conf, name);
 		job.setJarByClass(WordCount.class);
 		

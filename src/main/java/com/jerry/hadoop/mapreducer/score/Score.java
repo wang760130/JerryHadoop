@@ -13,18 +13,22 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
 
+import com.jerry.hadoop.mapreducer.common.Global;
+
 public class Score {
-	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
+	private static String name = "score";
+	public static void main(String[] args) 
+			throws IOException, ClassNotFoundException, InterruptedException {
+		
+		String input = Global.getInputFile(name);
+		String output = Global.getOutputFile(name);
+		
 		Configuration conf = new Configuration();
 		
-        String[] ioArgs = new String[] {"/hadoop/mapreducer/score/inputfile", "/hadoop/mapreducer/score/outputfile"};
+        String[] ioArgs = new String[] {input, output};
         String[] otherArgs = new GenericOptionsParser(conf, ioArgs).getRemainingArgs();
-        if (otherArgs.length != 2) {
-            System.err.println("Usage: Score Average <in> <out>");
-            System.exit(2);
-        }
         
-        Job job = new Job(conf, "score");
+        Job job = new Job(conf, name);
         
         job.setJarByClass(Score.class);
 
