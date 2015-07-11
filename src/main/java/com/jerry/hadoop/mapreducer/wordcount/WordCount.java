@@ -18,10 +18,11 @@ import com.jerry.hadoop.mapreducer.common.Global;
  * @author JerryWang
  */
 public class WordCount {
+	private static String name = "wordcount";
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		
-		String input = Global.getInputFile("wordcount");
-		String output = Global.getOutputFile("wordcount");
+		String input = Global.getInputFile(name);
+		String output = Global.getOutputFile(name);
 		
 		Configuration conf = new Configuration();
 		args = new String[] {input, output};
@@ -32,7 +33,7 @@ public class WordCount {
 			System.exit(2);
 		}
 		
-		Job job = new Job(conf, "word count");
+		Job job = new Job(conf, name);
 		job.setJarByClass(WordCount.class);
 		
 		job.setMapperClass(MapperClass.class);

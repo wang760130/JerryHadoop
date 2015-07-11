@@ -20,7 +20,8 @@ import org.apache.hadoop.util.ToolRunner;
 
 import com.jerry.hadoop.mapreducer.common.Global;
 
-public class WordCountRun extends Configured implements Tool{
+public class WordCountRun extends Configured implements Tool {
+	private static String name = "wordcount";
 	enum Counter {
 		LINESKIP       // 出错的行
 	}
@@ -28,13 +29,13 @@ public class WordCountRun extends Configured implements Tool{
 	@Override
 	public int run(String[] args) throws Exception {
 		
-		String input = Global.getInputFile("wordcount");
-		String output = Global.getOutputFile("wordcount");
+		String input = Global.getInputFile(name);
+		String output = Global.getOutputFile(name);
 		
 		Configuration conf = new Configuration();  
         Job job = new Job(conf);  
         job.setJarByClass(WordCount.class);  
-        job.setJobName("WordCount");  
+        job.setJobName(name);  
   
         job.setOutputKeyClass(Text.class);  
         job.setOutputValueClass(IntWritable.class);  

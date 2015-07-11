@@ -22,7 +22,7 @@ import org.apache.hadoop.mapred.TextOutputFormat;
 import com.jerry.hadoop.mapreducer.common.Global;
 
 public class WordCountBase {
-
+	private static String name = "wordcount";
 	public class WordCountMapper extends MapReduceBase implements
 			Mapper<Object, Text, Text, IntWritable> {
 		private final IntWritable one = new IntWritable(1);
@@ -60,11 +60,11 @@ public class WordCountBase {
 	}
 
 	public static void main(String[] args) throws Exception {
-		String input = Global.getInputFile("wordcount");
-		String output = Global.getOutputFile("wordcount");
+		String input = Global.getInputFile(name);
+		String output = Global.getOutputFile(name);
 
 		JobConf conf = new JobConf(WordCountBase.class);
-		conf.setJobName("WordCount");
+		conf.setJobName(name);
 		conf.addResource("classpath:/hadoop/core-site.xml");
 		conf.addResource("classpath:/hadoop/hdfs-site.xml");
 		conf.addResource("classpath:/hadoop/mapred-site.xml");
