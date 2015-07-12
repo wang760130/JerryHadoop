@@ -28,7 +28,25 @@ public class MapperClass extends Mapper<Object , Text, Text, Text>{
         String mapValue = new String();
         
         int i = 0;
-        
-        
+        while(itr.hasMoreTokens()) {
+        	// 先读取一个单词
+        	String token = itr.nextToken();
+        	// 判断该地址ID就把存到"values[0]"
+        	if(token.charAt(0) > '0' && token.charAt(0) <= '9') {
+        		mapKey = token;
+                if (i > 0) {
+                    relationtype = "1";
+                } else {
+                    relationtype = "2";
+                }
+                continue;
+        	}
+        	
+        	// 存工厂名
+        	mapValue += token + " ";
+            i++;
+        }
+        // 输出左右表
+        context.write(new Text(mapKey), new Text(relationtype + "+"+ mapValue));
 	}
 }
