@@ -1,4 +1,4 @@
-package com.jerry.hadoop.mapreducer.mtjoin;
+package com.jerry.hadoop.mapreducer.invertedindex;
 
 import java.io.IOException;
 
@@ -16,16 +16,8 @@ import com.jerry.hadoop.mapreducer.wordcount.MapperClass;
 import com.jerry.hadoop.mapreducer.wordcount.ReducerClass;
 import com.jerry.hadoop.mapreducer.wordcount.WordCount;
 
-/**
- * 多表关联和单表关联相似，都类似于数据库中的自然连接。
- * 相比单表关联，多表关联的左右表和连接列更加清楚。
- * 所以可以采用和单表关联的相同的处理方式，map识别出输入的行属于哪个表之后，
- * 对其进行分割，将连接的列值保存在key中，另一列和左右表标识保存在value中，然后输出。
- * reduce拿到连接结果之后，解析value内容，根据标志将左右表内容分开存放，
- * 然后求笛卡尔积，最后直接输出。
-*/
-public class Mtjoin {
-	private static String name = "mtjoin";
+public class InvertedIndex {
+	private static String name = "invertedindex";
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		
 		String input = Global.getInputFile(name);
@@ -39,6 +31,7 @@ public class Mtjoin {
 		job.setJarByClass(WordCount.class);
 		
 		job.setMapperClass(MapperClass.class);
+		job.setCombinerClass(CombineClass.class);
 		job.setReducerClass(ReducerClass.class);
 		
 		job.setCombinerClass(ReducerClass.class);
