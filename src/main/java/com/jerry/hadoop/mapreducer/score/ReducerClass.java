@@ -26,7 +26,7 @@ public class ReducerClass extends Reducer<Text, IntWritable, Text, IntWritable>{
 		}
 		
 		// 计算平均成绩
-		int average = (int)sum / count;
+		int average = (int) sum / count;
 		context.write(key, new IntWritable(average));
 	}
 }
