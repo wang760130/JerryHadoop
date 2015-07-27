@@ -11,4 +11,8 @@ public class Global {
 	public static String getOutputFile(String name) {
 		return HDFS_URL + "mapreducer/"+name+"/outputfile";
 	}
+	
+	public static String getHdfsUrl() {
+		return HDFS_URL;
+	}
 }
