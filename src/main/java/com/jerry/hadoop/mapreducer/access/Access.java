@@ -140,6 +140,5 @@ public class Access {
 		
 	    }
 		
-//		System.out.println(Access.parser(str).toString());
 	}
 }

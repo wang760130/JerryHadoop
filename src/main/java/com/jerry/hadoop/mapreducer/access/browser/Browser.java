@@ -1,4 +1,4 @@
-package com.jerry.hadoop.mapreducer.access.ip;
+package com.jerry.hadoop.mapreducer.access.browser;
 
 import java.io.IOException;
 
@@ -10,11 +10,10 @@ import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.util.GenericOptionsParser;
-
 import com.jerry.hadoop.mapreducer.common.Global;
 
-public class IP {
-	private static String name = "ip";
+public class Browser {
+private static String name = "browser";
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
 		
@@ -26,7 +25,7 @@ public class IP {
 		String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 		
 		Job job = new Job(conf, name);
-		job.setJarByClass(IP.class);
+		job.setJarByClass(Browser.class);
 		
 		job.setMapperClass(MapperClass.class);
 		job.setReducerClass(ReducerClass.class);
