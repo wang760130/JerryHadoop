@@ -1,4 +1,4 @@
-package com.jerry.hadoop.mapreducer.access.accessip;
+package com.jerry.hadoop.mapreducer.access.ip;
 
 import java.io.IOException;
 
@@ -13,7 +13,7 @@ import org.apache.hadoop.util.GenericOptionsParser;
 
 import com.jerry.hadoop.mapreducer.common.Global;
 
-public class AccessIP {
+public class IP {
 	private static String name = "accessip";
 	
 	public static void main(String[] args) throws IOException, ClassNotFoundException, InterruptedException {
@@ -26,7 +26,7 @@ public class AccessIP {
 		String[] otherArgs = new GenericOptionsParser(conf, args).getRemainingArgs();
 		
 		Job job = new Job(conf, name);
-		job.setJarByClass(AccessIP.class);
+		job.setJarByClass(IP.class);
 		
 		job.setMapperClass(MapperClass.class);
 		job.setReducerClass(ReducerClass.class);

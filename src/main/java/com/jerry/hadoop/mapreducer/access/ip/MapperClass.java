@@ -1,4 +1,4 @@
-package com.jerry.hadoop.mapreducer.access.accessip;
+package com.jerry.hadoop.mapreducer.access.ip;
 
 import java.io.IOException;
 
