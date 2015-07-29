@@ -16,18 +16,24 @@ import org.apache.hadoop.hbase.client.Scan;
 import org.apache.hadoop.hbase.util.Bytes;
 
 public class HbaseDao {
-
+	
+	private static final String HDFS = "hdfs://hadoop:9000/hbase";
+	
 	private static Configuration getConfiguration() {
 		Configuration conf = HBaseConfiguration.create();
-		conf.set("hbase.rootdir", "hdfs://hadoop:9000/hbase");
+		conf.set("hbase.rootdir", HDFS);
 		// 使用eclipse时必须添加这个，否则无法定位
 		conf.set("hbase.zookeeper.quorum", "hadoop");
+		
+//		conf.set("hbase.zookeeper.property.clientPort", "2281");
+//	    conf.set("hbase.zookeeper.quorum", "10.58.28.85:2281");
 		return conf;
 	}
 
 	// 创建一张表
 	public static void create(String tableName, String columnFamily)
 			throws IOException {
+		@SuppressWarnings("resource")
 		HBaseAdmin admin = new HBaseAdmin(getConfiguration());
 		if (admin.tableExists(tableName)) {
 			System.out.println("table exists!");
@@ -42,6 +48,7 @@ public class HbaseDao {
 	// 添加一条记录
 	public static void put(String tableName, String row, String columnFamily,
 			String column, String data) throws IOException {
+		@SuppressWarnings("resource")
 		HTable table = new HTable(getConfiguration(), tableName);
 		Put p1 = new Put(Bytes.toBytes(row));
 		p1.add(Bytes.toBytes(columnFamily), Bytes.toBytes(column),
@@ -53,6 +60,7 @@ public class HbaseDao {
 
 	// 读取一条记录
 	public static void get(String tableName, String row) throws IOException {
+		@SuppressWarnings("resource")
 		HTable table = new HTable(getConfiguration(), tableName);
 		Get get = new Get(Bytes.toBytes(row));
 		Result result = table.get(get);
@@ -61,6 +69,7 @@ public class HbaseDao {
 
 	// 显示所有数据
 	public static void scan(String tableName) throws IOException {
+		@SuppressWarnings("resource")
 		HTable table = new HTable(getConfiguration(), tableName);
 		Scan scan = new Scan();
 		ResultScanner scanner = table.getScanner(scan);
@@ -71,6 +80,7 @@ public class HbaseDao {
 
 	// 删除表
 	public static void delete(String tableName) throws IOException {
+		@SuppressWarnings("resource")
 		HBaseAdmin admin = new HBaseAdmin(getConfiguration());
 		if (admin.tableExists(tableName)) {
 			try {
@@ -82,6 +92,14 @@ public class HbaseDao {
 			}
 		}
 		System.out.println("Delete " + tableName + " 成功");
+	}
+	
+	public static void main(String[] args) {
+		try {
+			HbaseDao.create("tables1", "column1");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

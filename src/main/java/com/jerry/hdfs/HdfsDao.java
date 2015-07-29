@@ -17,8 +17,8 @@ import org.apache.hadoop.mapred.JobConf;
  * @date 2015年7月15日
  */
 public class HdfsDao {
-
-	private static final String HDFS = "";
+	
+	private static final String HDFS = "hdfs://10.58.28.85:9000/";
 	private String hdfsPath = null;
 	private Configuration conf = null;
 
