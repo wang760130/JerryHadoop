@@ -1,6 +1,7 @@
 package com.jerry.hbase;
 
 import java.io.IOException;
+import java.net.InetAddress;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -93,6 +94,7 @@ public class HbaseDao {
 		}
 		System.out.println("Delete " + tableName + " 成功");
 	}
+	
 	
 	public static void main(String[] args) {
 		try {
