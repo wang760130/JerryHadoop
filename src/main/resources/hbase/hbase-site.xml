@@ -5,7 +5,7 @@
 
 <configuration>
 	<property>
-		<name>mapred.job.tracker</name>
-		<value>hadoop:9001</value>
+		<name>fs.hdfs.impl</name>
+		<value>org.apache.hadoop.hdfs.DistributedFileSystem</value>
 	</property>
 </configuration>
