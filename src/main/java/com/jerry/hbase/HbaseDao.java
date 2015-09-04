@@ -90,14 +90,4 @@ public class HbaseDao {
 		}
 		System.out.println("Delete " + tableName + " 成功");
 	}
-	
-	
-	public static void main(String[] args) {
-		try {
-			HbaseDao.create("tables1", "column1");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
 }
