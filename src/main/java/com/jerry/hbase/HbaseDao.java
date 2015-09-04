@@ -1,7 +1,6 @@
 package com.jerry.hbase;
 
 import java.io.IOException;
-import java.net.InetAddress;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
@@ -18,17 +17,14 @@ import org.apache.hadoop.hbase.util.Bytes;
 
 public class HbaseDao {
 	
-	private static final String HDFS = "hdfs://hadoop:9000/hbase";
-	
 	private static Configuration getConfiguration() {
-		Configuration conf = HBaseConfiguration.create();
-		conf.set("hbase.rootdir", HDFS);
-		// 使用eclipse时必须添加这个，否则无法定位
-		conf.set("hbase.zookeeper.quorum", "hadoop");
+		Configuration configuration = HBaseConfiguration.create();
+		configuration.set("hbase.rootdir", "hdfs://10.58.1.177:9000/hbase");
 		
-//		conf.set("hbase.zookeeper.property.clientPort", "2281");
-//	    conf.set("hbase.zookeeper.quorum", "10.58.28.85:2281");
-		return conf;
+		configuration.set("hbase.zookeeper.property.clientPort", "2181");  
+	    configuration.set("hbase.zookeeper.quorum", "10.58.1.177");  
+	    configuration.set("hbase.master", "10.58.1.177:60000");  
+		return configuration;
 	}
 
 	// 创建一张表
