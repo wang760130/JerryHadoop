@@ -10,8 +10,7 @@ public class HiveDao {
 	public static void main(String[] args) throws ClassNotFoundException,
 			SQLException {
 		Class.forName("org.apache.hadoop.hive.jdbc.HiveDriver");
-		Connection con = DriverManager.getConnection(
-				"jdbc:hive://192.168.1.102:10000/wlan_dw", "", "");
+		Connection con = DriverManager.getConnection("jdbc:hive://192.168.1.102:10000/wlan_dw", "", "");
 		Statement stmt = con.createStatement();
 		String querySQL = "SELECT * FROM wlan_dw.dim_m order by flux desc limit 10";
 

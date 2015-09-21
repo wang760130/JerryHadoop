@@ -17,13 +17,15 @@ import org.apache.hadoop.hbase.util.Bytes;
 
 public class HbaseDao {
 	
+	private final static String HOST = "10.58.1.177";
+	
 	private static Configuration getConfiguration() {
 		Configuration configuration = HBaseConfiguration.create();
-		configuration.set("hbase.rootdir", "hdfs://10.58.1.177:9000/hbase");
+		configuration.set("hbase.rootdir", "hdfs://"+HOST+":9000/hbase");
 		
 		configuration.set("hbase.zookeeper.property.clientPort", "2181");  
-	    configuration.set("hbase.zookeeper.quorum", "10.58.1.177");  
-	    configuration.set("hbase.master", "10.58.1.177:60000");  
+	    configuration.set("hbase.zookeeper.quorum", HOST);  
+	    configuration.set("hbase.master", HOST + ":60000");  
 		return configuration;
 	}
 
